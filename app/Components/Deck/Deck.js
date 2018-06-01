@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, Animated } from 'react-native';
+import {ScrollView, View, Text, Animated } from 'react-native';
 import styles from './style';
-import DATA from '../../config/data';
-
-console.log(DATA);
 
 export default class Deck extends Component {
+    renderCards(){
+        return this.props.data.map((item)=> {
+            return this.props.renderCard(item);
+        });
+    }
+
     render(){
         return(
-            <View style= {styles.container}>
-                <Text>Boilerplate</Text>
-            </View>
+            <ScrollView style={ styles.container }>
+                { this.renderCards() }
+            </ScrollView>
         );
     }
 }
