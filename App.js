@@ -1,20 +1,3 @@
-import React from 'react';
-import { View } from 'react-native';
-import Ball from './src/Ball';
+import App from './app/index';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Ball/>
-      </View>
-    );
-  }
-}
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-};
+export default App;
