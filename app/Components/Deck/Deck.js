@@ -94,9 +94,9 @@ export default class Deck extends Component {
                 );
             }
             return (
-                <View key={ item.id } style={[styles.container, { top: 1 * (idx - this.state.index), zIndex: 5} ]}>
+                <Animated.View key={ item.id } style={[styles.container, { top: 1 * (idx - this.state.index), zIndex: 5} ]}>
                     { this.props.renderCard(item) }
-                </View>
+                </Animated.View>
             );
         }).reverse();
     }
