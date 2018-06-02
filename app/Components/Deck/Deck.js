@@ -8,6 +8,7 @@ import {
 import styles from './style';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SWIPE_THRESHOLD = 0.5 * SCREEN_WIDTH;
 
 export default class Deck extends Component {
     constructor(props){
@@ -18,9 +19,22 @@ export default class Deck extends Component {
             onPanResponderMove: (event, gesture) => {
                 position.setValue({ x: gesture.dx, y: gesture.dy });
             },
-            onPanResponderRelease: () => {}
+            onPanResponderRelease: (event, gesture) => {
+                if(gesture.dx > SWIPE_THRESHOLD){
+                    console.log('Like!');
+                }else if(gesture.dx < -SWIPE_THRESHOLD){
+                    console.log('Dislike!');
+                }
+                this.resetPostion();
+            }
         });
         this.state = { panResponder, position };
+    }
+
+    resetPostion(){
+        Animated.spring(this.state.position, {
+            toValue: {x: 0, y: 0}
+        }).start();
     }
 
     cardAnimationStyle(){
@@ -41,7 +55,7 @@ export default class Deck extends Component {
                 return(
                     <Animated.View
                         key={ item.id }
-                        style={ this.cardAnimationStyle() }
+                        style={ [styles.container, this.cardAnimationStyle()] }
                         {...this.state.panResponder.panHandlers}
                     >
                         { this.props.renderCard(item) }
