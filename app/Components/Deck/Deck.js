@@ -41,27 +41,6 @@ export default class Deck extends Component {
         this.state = { panResponder, position, index: 0 };
     }
 
-    renderCards(){
-        if(this.state.index >= this.props.data.length){
-            return this.props.renderNoMoreCards();
-        }
-        return this.props.data.map((item, idx)=> {
-            if(idx < this.state.index){ return null }
-            if(idx === this.state.index){
-                return(
-                    <Animated.View
-                        key={ item.id }
-                        style={ [styles.container, this.cardAnimationStyle()] }
-                        {...this.state.panResponder.panHandlers}
-                    >
-                        { this.props.renderCard(item) }
-                    </Animated.View>
-                );
-            }
-            return this.props.renderCard(item);
-        });
-    }
-
     cardAnimationStyle(){
         const { position } = this.state;
         const  rotate = position.x.interpolate({
@@ -94,6 +73,32 @@ export default class Deck extends Component {
         direction === 'right' ? onSwipeRight(item) : onSwipeLeft(item);
         this.state.position.setValue({ x: 0, y: 0});
         this.setState({ index: this.state.index + 1});
+    }
+
+    renderCards(){
+        if(this.state.index >= this.props.data.length){
+            return this.props.renderNoMoreCards();
+        }
+        return this.props.data.map((item, idx)=> {
+            if(idx < this.state.index){
+                return null
+            }else if(idx === this.state.index){
+                return(
+                    <Animated.View
+                        key={ item.id }
+                        style={[this.cardAnimationStyle(), styles.container, {zIndex: 99}]}
+                        {...this.state.panResponder.panHandlers}
+                    >
+                        { this.props.renderCard(item) }
+                    </Animated.View>
+                );
+            }
+            return (
+                <View key={ item.id } style={[styles.container, { top: 1 * (idx - this.state.index), zIndex: 5} ]}>
+                    { this.props.renderCard(item) }
+                </View>
+            );
+        }).reverse();
     }
 
     render(){
