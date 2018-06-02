@@ -3,7 +3,9 @@ import {
     View,
     Animated, 
     PanResponder,
-    Dimensions
+    Dimensions,
+    LayoutAnimation,
+    UIManager,
 } from 'react-native';
 import styles from './style';
 
@@ -39,6 +41,17 @@ export default class Deck extends Component {
             }
         });
         this.state = { panResponder, position, index: 0 };
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.data !== this.props.data){
+            this.setState({ index: 0})
+        }
+    }
+
+    componentWillUpdate(){
+        UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+        LayoutAnimation.spring();
     }
 
     cardAnimationStyle(){
@@ -86,7 +99,10 @@ export default class Deck extends Component {
                 return(
                     <Animated.View
                         key={ item.id }
-                        style={[this.cardAnimationStyle(), styles.container, {zIndex: 99}]}
+                        style={[
+                            this.cardAnimationStyle(),
+                            styles.container, {zIndex: 99}
+                        ]}
                         {...this.state.panResponder.panHandlers}
                     >
                         { this.props.renderCard(item) }
@@ -94,7 +110,14 @@ export default class Deck extends Component {
                 );
             }
             return (
-                <Animated.View key={ item.id } style={[styles.container, { top: 1 * (idx - this.state.index), zIndex: 5} ]}>
+                <Animated.View 
+                    key={ item.id }
+                    style={[
+                        styles.container,
+                        { top: 5 * (idx - this.state.index),
+                        zIndex: 5}
+                    ]}
+                >
                     { this.props.renderCard(item) }
                 </Animated.View>
             );
