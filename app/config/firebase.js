@@ -1,12 +1,12 @@
-import firebase from 'firebase';
-import firebaseKey from './keys';
+import * as firebase from 'firebase';
+import service from './firebase_service';
 
-const config = {
-    apiKey: firebaseKey,
-    authDomain: "job-s-deck.firebaseapp.com",
-    databaseURL: "https://job-s-deck.firebaseio.com",
-    projectId: "job-s-deck",
-    storageBucket: "job-s-deck.appspot.com",
-    messagingSenderId: "558990028431"
-};
-firebase.initializeApp(config);
+const config = service;
+
+if(!firebase.apps.length){
+    firebase.initializeApp(config);
+}
+
+const auth = firebase.auth();
+
+export { auth, firebase };
