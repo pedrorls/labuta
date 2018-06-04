@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Card, Button } from 'react-native-elements';
-import { Deck } from '../Components/Deck';
-import DATA from '../config/data';
+import { Deck } from '../../Components/Deck';
+import styles from './styles';
+import DATA from '../../config/data';
 
 export default class Home extends Component {
 
@@ -47,9 +48,3 @@ export default class Home extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    cardStyle: {
-        marginTop: StatusBar.currentHeight,
-    }
-});
