@@ -11,6 +11,15 @@ export default class Login extends Component {
     }
 
     onLoginPress(){
+        const { email, pass} = this.state;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => {
+                console.log('Logged in');
+            })
+            .catch(() => {
+                console.log('error!');
+            });
     }
 
     render(){
@@ -33,7 +42,7 @@ export default class Login extends Component {
                         title='Login'
                         buttonStyle={ styles.loginButton }
                         titleStyle={ styles.loginButtonText }
-                        onPress={this.onLoginPress()}
+                        onPress={() => this.onLoginPress()}
                     />
                     <Text h5> or </Text>
                     <SocialIcon
