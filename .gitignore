@@ -3,4 +3,4 @@ node_modules/**/*
 npm-debug.*
 .vscode/*
 .gitignore
-*/config/keys.js
+*/config/firebase_service.js
