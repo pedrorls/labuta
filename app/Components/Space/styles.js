@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     space: {
-        flex: 1,
-        height: 20,
+        height: 10,
+        width: 1,
         backgroundColor: 'transparent'
     }
 });
