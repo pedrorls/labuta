@@ -7,14 +7,13 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     loginButton: {
-        backgroundColor: 'transparent',
+        backgroundColor: '#FFFFFF',
         borderWidth: 1.5,
         borderColor: '#2B60DE',
+        borderRadius: 10,
         width: 300,
         height: 50,
-        alignSelf: 'center',
         marginTop: 20,
-        borderRadius: 10,
     },
     loginButtonText: {
         color: '#2B60DE',

@@ -26,7 +26,7 @@ export default class Login extends Component {
         return (
             <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss() }>
                 <View  style={ styles.container }>
-                        <Text h2>Login</Text>
+                        <Text h2 style={styles.displayText}>Login</Text>
                         <Input
                             placeholder='Email'
                             leftIcon={{ name: 'email' }}
