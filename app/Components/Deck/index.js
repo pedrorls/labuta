@@ -1,4 +1,4 @@
 import Deck from './Deck';
-import styles from './style';
+import styles from './styles';
 
 export { Deck, styles };

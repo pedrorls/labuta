@@ -7,7 +7,7 @@ import {
     LayoutAnimation,
     UIManager,
 } from 'react-native';
-import styles from './style';
+import styles from './styles';
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
